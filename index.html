@@ -13,12 +13,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Monoton&family=Anton&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#160409;          /* maroon profundo */
-  --bg-2:#2B0716;        /* vinho de palco */
+  --bg:#160409;
+  --bg-2:#2B0716;
   --vinho:#4A0E22;
-  --neon:#FF2D55;        /* neon da era "V" */
+  --neon:#FF2D55;
   --rosa:#FF8FAB;
-  --ouro:#F5C76B;        /* dourado de ingresso */
+  --ouro:#F5C76B;
   --txt:#FFF4F6;
   --muted:#C99CAC;
   --card:#21050F;
@@ -28,212 +28,125 @@
 html,body{min-height:100%}
 body{
   font-family:'Space Grotesk',system-ui,-apple-system,sans-serif;
-  background:var(--bg);
-  color:var(--txt);
-  min-height:100vh;
-  overflow-x:hidden;
+  background:var(--bg);color:var(--txt);
+  min-height:100vh;overflow-x:hidden;
   -webkit-font-smoothing:antialiased;
 }
 
-/* ---------- fundo de show ---------- */
+/* ---- fundo de show ---- */
 #palco-fundo{position:fixed;inset:0;width:100%;height:100%;z-index:0;display:block}
-/* carrossel opcional de fotos suas (ver CONFIG.fotosFundo) */
 #fotos-fundo{position:fixed;inset:0;z-index:0;display:none}
 #fotos-fundo .foto{
   position:absolute;inset:0;background-size:cover;background-position:center;
   opacity:0;animation:troca-foto linear infinite;
 }
-@keyframes troca-foto{
-  0%,100%{opacity:0}
-  6%,28%{opacity:1}
-  34%{opacity:0}
-}
-/* véu para manter o texto legível por cima do show */
+@keyframes troca-foto{0%,100%{opacity:0}6%,28%{opacity:1}34%{opacity:0}}
 #vinheta{
   position:fixed;inset:0;z-index:1;pointer-events:none;
   background:
-    radial-gradient(120% 80% at 50% 0%, transparent 38%, rgba(8,2,5,.62) 100%),
-    linear-gradient(180deg, rgba(8,2,5,.30) 0%, rgba(8,2,5,.10) 30%, rgba(8,2,5,.55) 100%);
+    radial-gradient(120% 80% at 50% 0%,transparent 38%,rgba(8,2,5,.62) 100%),
+    linear-gradient(180deg,rgba(8,2,5,.30) 0%,rgba(8,2,5,.10) 30%,rgba(8,2,5,.55) 100%);
 }
 
-/* ---------- estrutura ---------- */
-.palco{
-  position:relative;z-index:2;
-  max-width:780px;margin:0 auto;
-  padding:52px 20px 90px;
-  text-align:center;
-}
+/* ---- estrutura ---- */
+.palco{position:relative;z-index:2;max-width:780px;margin:0 auto;padding:52px 20px 90px;text-align:center}
 
-/* ---------- letreiro neon ---------- */
+/* ---- letreiro neon ---- */
 .neon-coracao{
   width:72px;height:auto;
   filter:drop-shadow(0 0 6px rgba(255,45,85,.95)) drop-shadow(0 0 20px rgba(255,45,85,.55));
-  animation:batida 1.7s ease-in-out infinite, tremeluz 8s linear infinite;
+  animation:batida 1.7s ease-in-out infinite,tremeluz 8s linear infinite;
 }
-@keyframes batida{
-  0%,100%{transform:scale(1)}
-  12%{transform:scale(1.09)}
-  24%{transform:scale(1)}
-  36%{transform:scale(1.06)}
-  48%{transform:scale(1)}
-}
-@keyframes tremeluz{
-  0%,90.9%,93.1%,95.4%,100%{opacity:1}
-  91%{opacity:.4}
-  92%{opacity:1}
-  95%{opacity:.55}
-}
+@keyframes batida{0%,100%{transform:scale(1)}12%{transform:scale(1.09)}24%{transform:scale(1)}36%{transform:scale(1.06)}48%{transform:scale(1)}}
+@keyframes tremeluz{0%,90.9%,93.1%,95.4%,100%{opacity:1}91%{opacity:.4}92%{opacity:1}95%{opacity:.55}}
 h1.marquee{
-  margin-top:18px;
-  font-family:'Monoton',cursive;
-  font-weight:400;
-  font-size:clamp(34px,7.5vw,62px);
-  letter-spacing:.08em;
-  color:#FFE9EE;
+  margin-top:18px;font-family:'Monoton',cursive;font-weight:400;
+  font-size:clamp(34px,7.5vw,62px);letter-spacing:.08em;color:#FFE9EE;
   text-shadow:0 0 8px rgba(255,45,85,.85),0 0 26px rgba(255,45,85,.5),0 0 70px rgba(255,45,85,.35);
 }
 .dedicatoria{margin-top:12px;color:#F2D9E1;font-size:15px;letter-spacing:.02em;text-shadow:0 1px 14px rgba(0,0,0,.5)}
 
-/* ---------- contador ---------- */
-.faltam{
-  margin-top:48px;
-  font-size:13px;letter-spacing:.46em;text-transform:uppercase;
-  color:var(--rosa);text-shadow:0 1px 12px rgba(0,0,0,.5);
-}
-.contador{
-  display:grid;grid-template-columns:repeat(4,1fr);
-  margin-top:16px;
-}
+/* ---- contador ---- */
+.faltam{margin-top:48px;font-size:13px;letter-spacing:.46em;text-transform:uppercase;color:var(--rosa);text-shadow:0 1px 12px rgba(0,0,0,.5)}
+.contador{display:grid;grid-template-columns:repeat(4,1fr);margin-top:16px}
 .unidade{padding:10px 6px;position:relative}
-.unidade+.unidade::before{
-  content:"";position:absolute;left:0;top:18%;bottom:28%;
-  width:1px;background:var(--hairline);
-}
-.unidade .num{
-  font-family:'Anton',Impact,sans-serif;
-  font-size:clamp(50px,13vw,102px);
-  line-height:1;color:#fff;
-  font-variant-numeric:tabular-nums;
-  text-shadow:0 0 10px rgba(255,45,85,.95),0 0 32px rgba(255,45,85,.5),0 0 72px rgba(255,45,85,.28);
-}
-.unidade .rotulo{
-  margin-top:9px;font-size:11px;letter-spacing:.34em;
-  text-transform:uppercase;color:#D6AEBC;
-}
+.unidade+.unidade::before{content:"";position:absolute;left:0;top:18%;bottom:28%;width:1px;background:var(--hairline)}
+.unidade .num{font-family:'Anton',Impact,sans-serif;font-size:clamp(50px,13vw,102px);line-height:1;color:#fff;font-variant-numeric:tabular-nums;text-shadow:0 0 10px rgba(255,45,85,.95),0 0 32px rgba(255,45,85,.5),0 0 72px rgba(255,45,85,.28)}
+.unidade .rotulo{margin-top:9px;font-size:11px;letter-spacing:.34em;text-transform:uppercase;color:#D6AEBC}
 .para-o-show{margin-top:14px;color:#EAD0D8;font-size:15px;text-shadow:0 1px 12px rgba(0,0,0,.5)}
-@media(max-width:560px){
-  .contador{grid-template-columns:repeat(2,1fr);row-gap:24px}
-  .unidade:nth-child(3)::before{display:none}
-}
+@media(max-width:560px){.contador{grid-template-columns:repeat(2,1fr);row-gap:24px}.unidade:nth-child(3)::before{display:none}}
 
-/* ---------- mensagem do grande dia ---------- */
+/* ---- grande dia ---- */
 #grande-dia{display:none;margin-top:26px}
-#grande-dia .grito{
-  font-family:'Anton',Impact,sans-serif;
-  font-size:clamp(44px,11vw,86px);
-  text-transform:uppercase;line-height:1.05;color:#fff;
-  text-shadow:0 0 12px rgba(255,45,85,1),0 0 40px rgba(255,45,85,.6),0 0 90px rgba(255,45,85,.35);
-}
+#grande-dia .grito{font-family:'Anton',Impact,sans-serif;font-size:clamp(44px,11vw,86px);text-transform:uppercase;line-height:1.05;color:#fff;text-shadow:0 0 12px rgba(255,45,85,1),0 0 40px rgba(255,45,85,.6),0 0 90px rgba(255,45,85,.35)}
 #grande-dia .sussurro{margin-top:14px;color:var(--rosa);font-size:17px}
 
-/* ---------- faixa de ingresso ---------- */
+/* ---- ingresso ---- */
 .ingresso{
   margin:40px auto 0;max-width:580px;
-  border:1px dashed rgba(245,199,107,.5);
-  border-radius:14px;
-  padding:15px 30px;
-  color:var(--ouro);
-  letter-spacing:.16em;font-size:12.5px;text-transform:uppercase;
-  background:rgba(36,10,20,.55);
-  position:relative;backdrop-filter:blur(2px);
+  border:1px dashed rgba(245,199,107,.5);border-radius:14px;
+  padding:15px 30px;color:var(--ouro);letter-spacing:.16em;font-size:12.5px;text-transform:uppercase;
+  background:rgba(36,10,20,.55);position:relative;backdrop-filter:blur(2px);
 }
-.ingresso::before,.ingresso::after{
-  content:"";position:absolute;top:50%;transform:translateY(-50%);
-  width:18px;height:18px;border-radius:50%;
-  background:var(--bg);border:1px dashed rgba(245,199,107,.5);
-}
-.ingresso::before{left:-10px}
-.ingresso::after{right:-10px}
+.ingresso::before,.ingresso::after{content:"";position:absolute;top:50%;transform:translateY(-50%);width:18px;height:18px;border-radius:50%;background:var(--bg);border:1px dashed rgba(245,199,107,.5)}
+.ingresso::before{left:-10px}.ingresso::after{right:-10px}
 
-/* ---------- barra de progresso ---------- */
+/* ---- barra de progresso ---- */
 .caminho{margin-top:46px}
 .caminho .legenda{font-size:13.5px;color:#EAD0D8;text-shadow:0 1px 12px rgba(0,0,0,.5)}
 .caminho .legenda b{color:var(--rosa);font-weight:600}
-.trilha{
-  max-width:560px;margin:14px auto 0;height:6px;border-radius:99px;
-  background:rgba(255,143,171,.16);position:relative;
-}
-.preenchido{
-  height:100%;border-radius:99px;width:0%;
-  background:linear-gradient(90deg,var(--vinho),var(--neon));
-  box-shadow:0 0 14px rgba(255,45,85,.55);
-  transition:width 1.4s ease;
-}
-.coracaozinho{
-  position:absolute;top:50%;left:0%;
-  transform:translate(-50%,-54%);
-  font-size:15px;transition:left 1.4s ease;
-  filter:drop-shadow(0 0 6px rgba(255,45,85,.85));
-}
+.trilha{max-width:560px;margin:14px auto 0;height:6px;border-radius:99px;background:rgba(255,143,171,.16);position:relative}
+.preenchido{height:100%;border-radius:99px;width:0%;background:linear-gradient(90deg,var(--vinho),var(--neon));box-shadow:0 0 14px rgba(255,45,85,.55);transition:width 1.4s ease}
+.coracaozinho{position:absolute;top:50%;left:0%;transform:translate(-50%,-54%);font-size:15px;transition:left 1.4s ease;filter:drop-shadow(0 0 6px rgba(255,45,85,.85))}
 
-/* ---------- tocando agora (player de áudio) ---------- */
+/* ---- player principal ---- */
 .cartao{
   margin:58px auto 0;max-width:660px;text-align:left;
   background:linear-gradient(180deg,rgba(40,9,22,.66),rgba(20,4,11,.82));
-  border:1px solid var(--hairline);
-  border-radius:20px;
-  padding:22px 22px 20px;
-  backdrop-filter:blur(6px);
+  border:1px solid var(--hairline);border-radius:20px;
+  padding:22px 22px 20px;backdrop-filter:blur(6px);
   box-shadow:0 18px 60px rgba(0,0,0,.45);
 }
 .np{display:flex;align-items:center;gap:16px}
-/* disco de vinil girando */
 .disco{
   flex:0 0 auto;width:72px;height:72px;border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 50%, #2a2a2a 0 16%, #0b0b0b 17% 22%, #1a1a1a 23% 100%);
-  position:relative;
-  box-shadow:0 6px 20px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.05);
+  background:radial-gradient(circle at 50% 50%,#2a2a2a 0 16%,#0b0b0b 17% 22%,#1a1a1a 23% 100%);
+  position:relative;box-shadow:0 6px 20px rgba(0,0,0,.5),inset 0 0 0 1px rgba(255,255,255,.05);
   animation:girar 4s linear infinite;animation-play-state:paused;
 }
 .disco.tocando{animation-play-state:running}
-.disco::before{ /* sulcos */
-  content:"";position:absolute;inset:8px;border-radius:50%;
-  background:repeating-radial-gradient(circle at 50% 50%, rgba(255,255,255,.045) 0 1px, transparent 1px 4px);
-}
-.disco::after{ /* etiqueta central */
-  content:"";position:absolute;inset:0;margin:auto;width:26px;height:26px;border-radius:50%;
-  background:radial-gradient(circle at 50% 40%, var(--rosa), var(--neon) 70%);
-  box-shadow:0 0 0 3px #0b0b0b, 0 0 14px rgba(255,45,85,.7);
-}
+.disco::before{content:"";position:absolute;inset:8px;border-radius:50%;background:repeating-radial-gradient(circle at 50% 50%,rgba(255,255,255,.045) 0 1px,transparent 1px 4px)}
+.disco::after{content:"";position:absolute;inset:0;margin:auto;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 50% 40%,var(--rosa),var(--neon) 70%);box-shadow:0 0 0 3px #0b0b0b,0 0 14px rgba(255,45,85,.7)}
 @keyframes girar{to{transform:rotate(360deg)}}
 .np-info{flex:1 1 auto;min-width:0}
-.np-eyebrow{
-  font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--rosa);
-  display:flex;gap:8px;align-items:center;flex-wrap:wrap;
-}
+.np-eyebrow{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:var(--rosa);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .np-eyebrow .dia-n{color:var(--ouro);letter-spacing:.14em}
-.titulo-musica{
-  font-family:'Anton',Impact,sans-serif;font-weight:400;
-  font-size:clamp(24px,5.4vw,36px);
-  letter-spacing:.02em;text-transform:uppercase;
-  margin-top:7px;color:#fff;line-height:1.05;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+.titulo-musica{font-family:'Anton',Impact,sans-serif;font-weight:400;font-size:clamp(24px,5.4vw,36px);letter-spacing:.02em;text-transform:uppercase;margin-top:7px;color:#fff;line-height:1.05;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.album-musica{color:#D6AEBC;font-size:13.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+/* controles ⏮ ▶/❚❚ ⏭ */
+.np-controles{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.np-btn{
+  background:none;border:none;cursor:pointer;color:#fff;
+  font-size:18px;line-height:1;padding:6px;border-radius:50%;
+  transition:transform .1s ease,opacity .15s;opacity:.7;
 }
-.album{color:#D6AEBC;font-size:13.5px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.np-btn:hover{opacity:1;transform:scale(1.15)}
+.np-btn:active{transform:scale(.92)}
+.np-btn[disabled]{opacity:.25;cursor:default;pointer-events:none}
 .np-play{
-  flex:0 0 auto;width:58px;height:58px;border-radius:50%;cursor:pointer;
-  border:none;color:#fff;font-size:22px;line-height:1;
-  background:radial-gradient(circle at 50% 35%, var(--neon), #C2123B);
-  box-shadow:0 8px 24px rgba(255,45,85,.45), inset 0 1px 0 rgba(255,255,255,.3);
-  transition:transform .12s ease, box-shadow .2s ease;
+  width:54px;height:54px;border-radius:50%;cursor:pointer;
+  border:none;color:#fff;font-size:20px;line-height:1;
+  background:radial-gradient(circle at 50% 35%,var(--neon),#C2123B);
+  box-shadow:0 8px 24px rgba(255,45,85,.45),inset 0 1px 0 rgba(255,255,255,.3);
+  transition:transform .12s ease,box-shadow .2s ease;
   display:flex;align-items:center;justify-content:center;
 }
-.np-play:hover{transform:scale(1.06)}
-.np-play:active{transform:scale(.96)}
-.np-play[disabled]{opacity:.5;cursor:default}
+.np-play:hover{transform:scale(1.07)}
+.np-play:active{transform:scale(.95)}
+.np-play[disabled]{opacity:.4;cursor:default}
 
-/* host do player oficial (compacto, fica visível mas discreto) */
+/* player yt oculto/visível */
 .yt-host{
   margin-top:16px;border-radius:12px;overflow:hidden;
   border:1px solid rgba(255,45,85,.28);background:#000;
@@ -241,61 +154,63 @@ h1.marquee{
 }
 .yt-host.aberto{height:150px;opacity:1}
 .yt-host iframe{width:100%;height:100%;border:0;display:block}
-.np-toggle{
-  margin-top:12px;font-size:12.5px;color:var(--rosa);cursor:pointer;
-  background:none;border:none;letter-spacing:.04em;padding:2px 0;
-}
+.np-toggle{margin-top:12px;font-size:12.5px;color:var(--rosa);cursor:pointer;background:none;border:none;letter-spacing:.04em;padding:2px 0}
 .np-toggle:hover{text-decoration:underline}
 .amanha{margin-top:14px;font-size:13.5px;color:#D6AEBC}
 .amanha b{color:var(--rosa);font-weight:600}
 
-/* ---------- você sabia ---------- */
+/* ---- você sabia (com fade) ---- */
 .sabia{
   margin:24px auto 0;max-width:660px;text-align:left;
   border:1px solid var(--hairline);border-radius:16px;
   padding:18px 22px;background:rgba(20,4,11,.62);backdrop-filter:blur(4px);
 }
-.olho{
-  display:flex;align-items:center;justify-content:space-between;gap:10px;
-  font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--rosa);
+.olho{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:11.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--rosa)}
+.sabia-texto{margin-top:9px;color:#F4DCE4;font-size:15px;line-height:1.6;transition:opacity .5s ease,transform .5s ease}
+.sabia-texto.saindo{opacity:0;transform:translateY(-6px)}
+.sabia-texto.entrando{opacity:0;transform:translateY(8px)}
+.sabia-dots{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.sabia-dot{
+  width:6px;height:6px;border-radius:50%;background:var(--hairline);
+  cursor:pointer;transition:background .25s,transform .2s;
+  border:none;padding:0;
 }
-.sabia p{margin-top:9px;color:#F4DCE4;font-size:15px;line-height:1.6}
+.sabia-dot.ativo{background:var(--rosa);transform:scale(1.35)}
+.sabia-timer{
+  margin-left:auto;font-size:11px;letter-spacing:.2em;color:var(--muted);
+  display:flex;align-items:center;gap:5px;
+}
+.sabia-timer svg{display:block}
 
-/* ---------- playlist completa ---------- */
-.playlist{
-  max-width:660px;margin:24px auto 0;text-align:left;
-  color:var(--muted);font-size:14px;
-}
-.playlist summary{
-  cursor:pointer;color:var(--rosa);letter-spacing:.06em;
-  padding:8px 2px;list-style:none;
-}
+/* ---- playlist clicável ---- */
+.playlist{max-width:660px;margin:24px auto 0;text-align:left;color:var(--muted);font-size:14px}
+.playlist summary{cursor:pointer;color:var(--rosa);letter-spacing:.06em;padding:8px 2px;list-style:none}
 .playlist summary::-webkit-details-marker{display:none}
 .playlist summary::before{content:"♪  ";color:var(--ouro)}
-.playlist ol{margin:10px 0 0 0;padding:0;list-style:none}
+.playlist ol{margin:10px 0 0;padding:0;list-style:none}
 .playlist li{
-  padding:9px 4px;border-top:1px solid var(--hairline);
+  padding:9px 8px;border-top:1px solid var(--hairline);
   display:flex;gap:14px;line-height:1.4;
+  cursor:pointer;border-radius:8px;
+  transition:background .15s;align-items:center;
 }
-.playlist li .n{color:var(--ouro);font-variant-numeric:tabular-nums;min-width:22px}
-.playlist li .t{color:#F4DCE4}
+.playlist li:hover{background:rgba(255,45,85,.09)}
+.playlist li.ativa{background:rgba(255,45,85,.14)}
+.playlist li .n{color:var(--ouro);font-variant-numeric:tabular-nums;min-width:22px;flex-shrink:0}
+.playlist li .t{color:#F4DCE4;flex:1}
+.playlist li .ico{font-size:12px;color:var(--rosa);flex-shrink:0;opacity:0}
+.playlist li.ativa .ico{opacity:1}
+.playlist li:hover .ico{opacity:.55}
 
-/* ---------- rodapé ---------- */
+/* ---- rodapé ---- */
 .assinatura{margin-top:70px;color:#D6AEBC;font-size:14px;line-height:1.7;text-shadow:0 1px 12px rgba(0,0,0,.5)}
 .assinatura .mini{color:var(--neon);filter:drop-shadow(0 0 5px rgba(255,45,85,.8))}
 
-/* ---------- chuva de corações (dia do show) ---------- */
-.chuva-item{
-  position:fixed;top:-46px;z-index:4;pointer-events:none;user-select:none;
-  animation:cair linear forwards;
-  filter:drop-shadow(0 0 6px rgba(255,45,85,.6));
-}
+/* ---- chuva ---- */
+.chuva-item{position:fixed;top:-46px;z-index:4;pointer-events:none;user-select:none;animation:cair linear forwards;filter:drop-shadow(0 0 6px rgba(255,45,85,.6))}
 @keyframes cair{to{transform:translateY(115vh) rotate(50deg);opacity:.95}}
 
-@media (prefers-reduced-motion: reduce){
-  .disco,.neon-coracao{animation:none !important}
-  #fotos-fundo .foto{animation-duration:0s}
-}
+@media(prefers-reduced-motion:reduce){.disco,.neon-coracao{animation:none !important}#fotos-fundo .foto,.sabia-texto{animation-duration:0s;transition:none}}
 </style>
 </head>
 <body>
@@ -305,7 +220,6 @@ h1.marquee{
 
 <main class="palco">
 
-  <!-- letreiro neon -->
   <svg class="neon-coracao" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
     <path d="M50 82 C 22 62, 6 44, 6 27 C 6 13, 17 5, 28 5 C 38 5, 46 11, 50 19 C 54 11, 62 5, 72 5 C 83 5, 94 13, 94 27 C 94 44, 78 62, 50 82 Z"
           stroke="#FF2D55" stroke-width="3.4" stroke-linejoin="round"/>
@@ -314,7 +228,6 @@ h1.marquee{
   <h1 class="marquee">MAROON&nbsp;5</h1>
   <p class="dedicatoria" id="dedicatoria">A contagem regressiva para a sua noite inesquecível</p>
 
-  <!-- contador -->
   <p class="faltam" id="faltam">Faltam</p>
   <section class="contador" id="contador" aria-live="polite">
     <div class="unidade"><div class="num" id="dias">--</div><div class="rotulo">dias</div></div>
@@ -324,16 +237,13 @@ h1.marquee{
   </section>
   <p class="para-o-show" id="para-o-show">para cantar junto com o Adam Levine e companhia</p>
 
-  <!-- mensagem do grande dia -->
   <section id="grande-dia">
     <div class="grito" id="grito"></div>
     <p class="sussurro" id="sussurro"></p>
   </section>
 
-  <!-- ingresso -->
   <div class="ingresso" id="ingresso">★ 08 · set · 2026 — Allianz Parque — São Paulo ★</div>
 
-  <!-- progresso -->
   <section class="caminho">
     <p class="legenda">Você já percorreu <b id="pct">0%</b> do caminho até o show</p>
     <div class="trilha">
@@ -342,16 +252,20 @@ h1.marquee{
     </div>
   </section>
 
-  <!-- tocando agora -->
+  <!-- player principal -->
   <section class="cartao">
     <div class="np">
       <div class="disco" id="disco" aria-hidden="true"></div>
       <div class="np-info">
-        <div class="np-eyebrow"><span>♪ Tocando hoje</span><span class="dia-n" id="dia-n"></span></div>
+        <div class="np-eyebrow"><span>♪ Tocando agora</span><span class="dia-n" id="dia-n"></span></div>
         <h2 class="titulo-musica" id="titulo-musica"></h2>
-        <p class="album" id="album-musica"></p>
+        <p class="album-musica" id="album-musica"></p>
       </div>
-      <button class="np-play" id="np-play" aria-label="Tocar a música de hoje" disabled>▶</button>
+      <div class="np-controles">
+        <button class="np-btn" id="np-prev" aria-label="Música anterior" title="Anterior" disabled>⏮</button>
+        <button class="np-play" id="np-play" aria-label="Play / Pause" disabled>▶</button>
+        <button class="np-btn" id="np-next" aria-label="Próxima música" title="Próxima" disabled>⏭</button>
+      </div>
     </div>
     <div class="yt-host" id="yt-host"><div id="yt-player"></div></div>
     <button class="np-toggle" id="np-toggle" hidden>mostrar player</button>
@@ -360,13 +274,19 @@ h1.marquee{
 
   <!-- você sabia -->
   <section class="sabia">
-    <div class="olho"><span>✦ Você sabia?</span></div>
-    <p id="fato"></p>
+    <div class="olho">
+      <span>✦ Você sabia?</span>
+      <div class="sabia-timer" id="sabia-timer" aria-hidden="true">
+        <svg width="14" height="14" viewBox="0 0 14 14"><circle cx="7" cy="7" r="6" fill="none" stroke="rgba(201,156,172,.4)" stroke-width="1.4"/><circle id="sabia-anel" cx="7" cy="7" r="6" fill="none" stroke="#FF8FAB" stroke-width="1.4" stroke-dasharray="37.7" stroke-dashoffset="37.7" stroke-linecap="round" transform="rotate(-90 7 7)" style="transition:stroke-dashoffset .25s linear"/></svg>
+      </div>
+    </div>
+    <p class="sabia-texto" id="fato"></p>
+    <div class="sabia-dots" id="sabia-dots" aria-label="Navegar curiosidades"></div>
   </section>
 
-  <!-- playlist completa -->
-  <details class="playlist">
-    <summary>ver todas as músicas da contagem</summary>
+  <!-- playlist clicável -->
+  <details class="playlist" id="playlist-details">
+    <summary>ver todas as músicas — clique para tocar</summary>
     <ol id="lista-playlist"></ol>
   </details>
 
@@ -381,40 +301,30 @@ h1.marquee{
    ⚙️  PERSONALIZE AQUI
    ═══════════════════════════════════════════════════════════ */
 const CONFIG = {
-  nomeDela: "",                            // ex.: "Ana" → vira "Para Ana, que vai cantar do começo ao fim". Deixe "" para o texto padrão.
-  dataShow: "2026-09-08T21:00:00-03:00",   // dia e hora do show no Allianz Parque (ajuste o horário se quiser)
+  nomeDela: "",
+  dataShow: "2026-09-08T21:00:00-03:00",
   localShow: "Allianz Parque — São Paulo",
-  inicioContagem: "2026-06-10",            // dia em que a contagem começou (usado na barra de progresso e na música do dia)
-
-  /* (OPCIONAL) Suas próprias fotos no fundo, trocando sozinhas.
-     Deixe a lista vazia [] para usar o fundo de show animado (holofotes + plateia).
-     Para usar suas fotos: coloque os arquivos na mesma pasta do site e escreva os nomes aqui.
-     Ex.: fotosFundo: ["foto1.jpg", "foto2.jpg", "nos-dois.jpg"]                              */
+  inicioContagem: "2026-06-10",
   fotosFundo: [],
 };
 
-/* A música muda automaticamente todo dia à meia-noite.
-   Para trocar ou adicionar músicas: o código "yt" é o que vem depois
-   de "watch?v=" no link do YouTube.
-   Ex.: youtube.com/watch?v=09R8_2nJtjg  →  yt: "09R8_2nJtjg"          */
 const MUSICAS = [
-  { titulo: "Sugar",            album: "V (2014)",                                 yt: "09R8_2nJtjg" },
-  { titulo: "She Will Be Loved",album: "Songs About Jane (2002)",                  yt: "nIjVuRTm-dc" },
-  { titulo: "Priceless",        album: "Love Is Like (2025) · feat. LISA",         yt: "vaGf8fmtBr4" },
-  { titulo: "Moves Like Jagger",album: "Hands All Over (2011) · feat. C. Aguilera",yt: "iEPTlhBmwRg" },
-  { titulo: "Memories",         album: "Jordi (2021)",                             yt: "SlPhMPnQ58k" },
-  { titulo: "Girls Like You",   album: "Red Pill Blues (2017) · feat. Cardi B",    yt: "aJOTlE1K90k" },
-  { titulo: "Payphone",         album: "Overexposed (2012) · feat. Wiz Khalifa",   yt: "KRaWnd3LJfs" },
-  { titulo: "This Love",        album: "Songs About Jane (2002)",                  yt: "XPpTgCho5ZA" },
-  { titulo: "Animals",          album: "V (2014)",                                 yt: "qpgTC9MDx1o" },
-  { titulo: "One More Night",   album: "Overexposed (2012)",                       yt: "fwK7ggA3-bU" },
-  { titulo: "Maps",             album: "V (2014)",                                 yt: "NmugSMBh_iI" },
-  { titulo: "What Lovers Do",   album: "Red Pill Blues (2017) · feat. SZA",        yt: "5Wiio4KoGe8" },
-  { titulo: "Don't Wanna Know", album: "Red Pill Blues (2017) · feat. K. Lamar",   yt: "ANS9sSJA9Yc" },
-  { titulo: "Heroine",          album: "Single novo (2026)",                       yt: "izP-4q4YtNw" },
+  { titulo: "Sugar",            album: "V (2014)",                                  yt: "09R8_2nJtjg" },
+  { titulo: "She Will Be Loved",album: "Songs About Jane (2002)",                   yt: "nIjVuRTm-dc" },
+  { titulo: "Priceless",        album: "Love Is Like (2025) · feat. LISA",          yt: "vaGf8fmtBr4" },
+  { titulo: "Moves Like Jagger",album: "Hands All Over (2011) · feat. C. Aguilera", yt: "iEPTlhBmwRg" },
+  { titulo: "Memories",         album: "Jordi (2021)",                              yt: "SlPhMPnQ58k" },
+  { titulo: "Girls Like You",   album: "Red Pill Blues (2017) · feat. Cardi B",     yt: "aJOTlE1K90k" },
+  { titulo: "Payphone",         album: "Overexposed (2012) · feat. Wiz Khalifa",    yt: "KRaWnd3LJfs" },
+  { titulo: "This Love",        album: "Songs About Jane (2002)",                   yt: "XPpTgCho5ZA" },
+  { titulo: "Animals",          album: "V (2014)",                                  yt: "qpgTC9MDx1o" },
+  { titulo: "One More Night",   album: "Overexposed (2012)",                        yt: "fwK7ggA3-bU" },
+  { titulo: "Maps",             album: "V (2014)",                                  yt: "NmugSMBh_iI" },
+  { titulo: "What Lovers Do",   album: "Red Pill Blues (2017) · feat. SZA",         yt: "5Wiio4KoGe8" },
+  { titulo: "Don't Wanna Know", album: "Red Pill Blues (2017) · feat. K. Lamar",    yt: "ANS9sSJA9Yc" },
+  { titulo: "Heroine",          album: "Single novo (2026)",                        yt: "izP-4q4YtNw" },
 ];
 
-/* Curiosidades que também mudam a cada dia */
 const FATOS = [
   "Antes de virar Maroon 5, a banda se chamava Kara's Flowers — Adam, Jesse e Mickey se conheceram ainda no colégio, em Los Angeles.",
   "O álbum de estreia, \"Songs About Jane\" (2002), foi inspirado em uma ex-namorada do Adam Levine chamada... Jane, claro.",
@@ -433,39 +343,275 @@ const FATOS = [
 ];
 
 /* ═══════════════════════════════════════════════════════════
-   Daqui para baixo, só a engrenagem ;)
+   Engrenagem — não precisa mexer abaixo daqui ;)
    ═══════════════════════════════════════════════════════════ */
-const $ = function(id){ return document.getElementById(id); };
+const $ = id => document.getElementById(id);
 const DIA_MS = 86400000;
 const ALVO = new Date(CONFIG.dataShow).getTime();
 const REDUZIR = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 function meiaNoite(d){ const x = new Date(d); x.setHours(0,0,0,0); return x; }
-
 const hoje0   = meiaNoite(new Date());
 const inicio0 = meiaNoite(new Date(CONFIG.inicioContagem + "T12:00:00"));
 const show0   = meiaNoite(new Date(CONFIG.dataShow));
 const duracaoTotal = Math.max(DIA_MS, show0 - inicio0);
 const totalDias = Math.round(duracaoTotal / DIA_MS);
 const diaN = Math.min(totalDias + 1, Math.max(1, Math.round((hoje0 - inicio0) / DIA_MS) + 1));
-
-const pad = function(n){ return String(n).padStart(2, "0"); };
+const pad = n => String(n).padStart(2, "0");
 let chuvaLigada = false;
 
-/* ---------- paletas de cena (mudam a cada dia) ---------- */
+/* ---- paletas de cena ---- */
 const CENAS = [
-  { a:[255,45,85],  b:[255,143,171] },  // rubi
-  { a:[123,91,255], b:[201,166,255] },  // violeta
-  { a:[34,211,238], b:[124,242,255] },  // ciano
-  { a:[245,199,107],b:[255,233,168] },  // ouro
-  { a:[255,107,61], b:[255,176,136] },  // âmbar
-  { a:[51,230,160], b:[166,255,217] },  // esmeralda
-  { a:[255,77,141], b:[255,158,196] },  // magenta
-  { a:[77,155,255], b:[166,204,255] },  // azul
+  {a:[255,45,85],  b:[255,143,171]},
+  {a:[123,91,255], b:[201,166,255]},
+  {a:[34,211,238], b:[124,242,255]},
+  {a:[245,199,107],b:[255,233,168]},
+  {a:[255,107,61], b:[255,176,136]},
+  {a:[51,230,160], b:[166,255,217]},
+  {a:[255,77,141], b:[255,158,196]},
+  {a:[77,155,255], b:[166,204,255]},
 ];
 const CENA = CENAS[(diaN - 1) % CENAS.length];
 
-/* ---------- contador ---------- */
+/* ──────────────────────────────────────────────
+   PLAYER — suporta troca de faixa
+   ────────────────────────────────────────────── */
+let musicaAtual = (diaN - 1) % MUSICAS.length;
+let ytPlayer = null, ytPronto = false, tocando = false;
+let fallbackFeito = false;
+
+function marcarTocando(v){
+  tocando = v;
+  $("disco").classList.toggle("tocando", v);
+  $("np-play").textContent = v ? "❚❚" : "▶";
+}
+
+function atualizarInfoPlayer(){
+  const m = MUSICAS[musicaAtual];
+  $("titulo-musica").textContent = m.titulo;
+  $("album-musica").textContent = m.album;
+  // destaca item ativo na playlist
+  document.querySelectorAll(".playlist li").forEach((li, i) => {
+    li.classList.toggle("ativa", i === musicaAtual);
+  });
+}
+
+function trocarFaixa(idx){
+  musicaAtual = ((idx % MUSICAS.length) + MUSICAS.length) % MUSICAS.length;
+  atualizarInfoPlayer();
+  if (ytPronto && ytPlayer) {
+    ytPlayer.loadVideoById(MUSICAS[musicaAtual].yt);
+    $("yt-host").classList.add("aberto");
+    $("np-toggle").textContent = "esconder player";
+    marcarTocando(true);
+  } else if (fallbackFeito) {
+    // recria o iframe de fallback com a nova música
+    const host = $("yt-host");
+    host.innerHTML = "";
+    const f = document.createElement("iframe");
+    f.src = "https://www.youtube.com/embed/" + MUSICAS[musicaAtual].yt + "?rel=0&playsinline=1&autoplay=1";
+    f.title = "Maroon 5 — " + MUSICAS[musicaAtual].titulo;
+    f.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+    f.setAttribute("allowfullscreen","");
+    host.appendChild(f);
+    host.classList.add("aberto");
+  }
+}
+
+function montarPlayerAPI(){
+  window.onYouTubeIframeAPIReady = function(){
+    ytPlayer = new YT.Player("yt-player", {
+      height:"100%", width:"100%",
+      videoId: MUSICAS[musicaAtual].yt,
+      playerVars: {rel:0, playsinline:1, modestbranding:1},
+      events:{
+        onReady: function(){
+          ytPronto = true;
+          $("np-play").disabled = false;
+          $("np-prev").disabled = false;
+          $("np-next").disabled = false;
+          $("np-toggle").hidden = false;
+        },
+        onStateChange: function(e){
+          if (e.data === YT.PlayerState.PLAYING) marcarTocando(true);
+          else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) marcarTocando(false);
+          if (e.data === YT.PlayerState.ENDED) trocarFaixa(musicaAtual + 1);
+        }
+      }
+    });
+  };
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  tag.onerror = montarFallback;
+  document.head.appendChild(tag);
+  setTimeout(() => { if (!ytPronto) montarFallback(); }, 4500);
+}
+
+function montarFallback(){
+  if (fallbackFeito || ytPronto) return;
+  fallbackFeito = true;
+  const host = $("yt-host");
+  host.innerHTML = "";
+  const f = document.createElement("iframe");
+  f.src = "https://www.youtube.com/embed/" + MUSICAS[musicaAtual].yt + "?rel=0&playsinline=1";
+  f.title = "Maroon 5 — " + MUSICAS[musicaAtual].titulo;
+  f.setAttribute("allow","accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+  f.setAttribute("allowfullscreen","");
+  f.loading = "lazy";
+  host.appendChild(f);
+  host.classList.add("aberto");
+  const btn = $("np-play");
+  btn.disabled = false;
+  btn.textContent = "▶";
+  btn.onclick = () => host.scrollIntoView({behavior:"smooth", block:"center"});
+  $("np-prev").disabled = false;
+  $("np-next").disabled = false;
+  $("np-toggle").hidden = true;
+}
+
+function ligarControles(){
+  $("np-play").addEventListener("click", () => {
+    if (!ytPronto || !ytPlayer) return;
+    if (tocando) {
+      ytPlayer.pauseVideo();
+    } else {
+      $("yt-host").classList.add("aberto");
+      $("np-toggle").textContent = "esconder player";
+      ytPlayer.playVideo();
+    }
+  });
+  $("np-prev").addEventListener("click", () => trocarFaixa(musicaAtual - 1));
+  $("np-next").addEventListener("click", () => trocarFaixa(musicaAtual + 1));
+  $("np-toggle").addEventListener("click", () => {
+    const aberto = $("yt-host").classList.toggle("aberto");
+    $("np-toggle").textContent = aberto ? "esconder player" : "mostrar player";
+  });
+}
+
+function renderMusica(){
+  const prox = MUSICAS[diaN % MUSICAS.length];
+  $("dia-n").textContent = (diaN > totalDias) ? "Dia do show!" : ("Dia " + diaN + " de " + totalDias);
+  if (diaN > totalDias)
+    $("amanha").innerHTML = "Hoje não tem \u201camanhã toca\u201d — hoje tem <b>show ao vivo</b>. 🎶";
+  else
+    $("amanha").innerHTML = "Amanhã toca: <b>" + prox.titulo + "</b> ✨";
+  atualizarInfoPlayer();
+  ligarControles();
+  montarPlayerAPI();
+}
+
+/* ──────────────────────────────────────────────
+   PLAYLIST CLICÁVEL
+   ────────────────────────────────────────────── */
+function renderPlaylist(){
+  const ol = $("lista-playlist");
+  MUSICAS.forEach((m, i) => {
+    const li = document.createElement("li");
+    const n = document.createElement("span"); n.className = "n"; n.textContent = pad(i + 1);
+    const t = document.createElement("span"); t.className = "t"; t.textContent = m.titulo + " — " + m.album;
+    const ico = document.createElement("span"); ico.className = "ico"; ico.textContent = "▶";
+    li.appendChild(n); li.appendChild(t); li.appendChild(ico);
+    li.title = "Tocar " + m.titulo;
+    li.addEventListener("click", () => {
+      $("playlist-details").open = true;
+      trocarFaixa(i);
+      // rola até o player ao clicar
+      document.querySelector(".cartao").scrollIntoView({behavior:"smooth", block:"center"});
+    });
+    ol.appendChild(li);
+  });
+}
+
+/* ──────────────────────────────────────────────
+   CURIOSIDADES — rotacionam a cada 20s com fade
+   ────────────────────────────────────────────── */
+let fatoAtual = (diaN - 1) % FATOS.length;
+const FATO_INTERVALO = 20000;
+let fatoTimer = null;
+let fatoProgress = 0;
+const CIRC = 37.7; // 2π×6
+
+function renderDots(){
+  const box = $("sabia-dots");
+  box.innerHTML = "";
+  FATOS.forEach((_, i) => {
+    const b = document.createElement("button");
+    b.className = "sabia-dot" + (i === fatoAtual ? " ativo" : "");
+    b.setAttribute("aria-label", "Curiosidade " + (i + 1));
+    b.addEventListener("click", () => irParaFato(i));
+    box.appendChild(b);
+  });
+}
+
+function atualizarDots(){
+  document.querySelectorAll(".sabia-dot").forEach((d, i) => d.classList.toggle("ativo", i === fatoAtual));
+}
+
+function irParaFato(idx, animar){
+  animar = animar !== false;
+  const el = $("fato");
+  const proximo = ((idx % FATOS.length) + FATOS.length) % FATOS.length;
+  if (animar && !REDUZIR){
+    el.classList.add("saindo");
+    setTimeout(() => {
+      fatoAtual = proximo;
+      el.textContent = FATOS[fatoAtual];
+      atualizarDots();
+      el.classList.remove("saindo");
+      el.classList.add("entrando");
+      requestAnimationFrame(() => requestAnimationFrame(() => el.classList.remove("entrando")));
+    }, 480);
+  } else {
+    fatoAtual = proximo;
+    el.textContent = FATOS[fatoAtual];
+    atualizarDots();
+  }
+  reiniciarTimer();
+}
+
+function reiniciarTimer(){
+  clearInterval(fatoTimer);
+  fatoProgress = 0;
+  const anel = $("sabia-anel");
+  if (anel) anel.style.strokeDashoffset = CIRC;
+  fatoTimer = setInterval(() => {
+    fatoProgress += 250;
+    if (anel){
+      const pct = fatoProgress / FATO_INTERVALO;
+      anel.style.strokeDashoffset = CIRC * (1 - pct);
+    }
+    if (fatoProgress >= FATO_INTERVALO) irParaFato(fatoAtual + 1);
+  }, 250);
+}
+
+function iniciarFatos(){
+  $("fato").textContent = FATOS[fatoAtual];
+  renderDots();
+  reiniciarTimer();
+}
+
+/* ──────────────────────────────────────────────
+   TEXTOS, INGRESSO, PROGRESSO
+   ────────────────────────────────────────────── */
+function renderTextos(){
+  if (CONFIG.nomeDela) $("dedicatoria").textContent = "Para " + CONFIG.nomeDela + ", que vai cantar do começo ao fim";
+  const d = new Date(CONFIG.dataShow);
+  const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
+  $("ingresso").textContent = "★ " + pad(d.getDate()) + " · " + meses[d.getMonth()] + " · " + d.getFullYear() + " — " + CONFIG.localShow + " ★";
+}
+
+function renderProgresso(){
+  const pct = Math.min(100, Math.max(0, ((hoje0 - inicio0) / duracaoTotal) * 100));
+  $("pct").textContent = Math.round(pct) + "%";
+  setTimeout(() => {
+    $("preenchido").style.width = pct + "%";
+    $("coracaozinho").style.left = pct + "%";
+  }, 250);
+}
+
+/* ──────────────────────────────────────────────
+   CONTADOR
+   ────────────────────────────────────────────── */
 function atualizar(){
   if (meiaNoite(new Date()).getTime() !== hoje0.getTime()) { location.reload(); return; }
   const d = ALVO - Date.now();
@@ -489,7 +635,7 @@ function estadoFinal(d){
   $("faltam").style.display = "none";
   $("para-o-show").style.display = "none";
   $("grande-dia").style.display = "block";
-  if (d > -6 * 3600000) {
+  if (d > -6 * 3600000){
     $("grito").textContent = "É agora! 🎤";
     $("sussurro").textContent = "Canta alto, dança muito e guarda cada segundo no coração.";
     document.title = "É AGORA 🎤 Maroon 5";
@@ -501,126 +647,9 @@ function estadoFinal(d){
   }
 }
 
-/* ---------- player de áudio (YouTube oficial, em segundo plano) ---------- */
-const MUSICA_HOJE = MUSICAS[(diaN - 1) % MUSICAS.length];
-let ytPlayer = null, ytPronto = false, tocando = false;
-
-function marcarTocando(v){
-  tocando = v;
-  $("disco").classList.toggle("tocando", v);
-  $("np-play").textContent = v ? "❚❚" : "▶";
-}
-
-/* tenta a IFrame API (permite o botão de play e o disco girando) */
-function montarPlayerAPI(){
-  window.onYouTubeIframeAPIReady = function(){
-    ytPlayer = new YT.Player("yt-player", {
-      height: "100%", width: "100%",
-      videoId: MUSICA_HOJE.yt,
-      playerVars: { rel:0, playsinline:1, modestbranding:1 },
-      events: {
-        onReady: function(){ ytPronto = true; $("np-play").disabled = false; $("np-toggle").hidden = false; },
-        onStateChange: function(e){
-          if (e.data === YT.PlayerState.PLAYING) marcarTocando(true);
-          else if (e.data === YT.PlayerState.PAUSED || e.data === YT.PlayerState.ENDED) marcarTocando(false);
-        }
-      }
-    });
-  };
-  const tag = document.createElement("script");
-  tag.src = "https://www.youtube.com/iframe_api";
-  tag.onerror = montarFallback;
-  document.head.appendChild(tag);
-  // se a API não responder em alguns segundos (sem internet, etc.), usa o plano B
-  setTimeout(function(){ if (!ytPronto) montarFallback(); }, 4500);
-}
-
-/* plano B: player embutido simples e compacto, sempre visível */
-let fallbackFeito = false;
-function montarFallback(){
-  if (fallbackFeito || ytPronto) return;
-  fallbackFeito = true;
-  const host = $("yt-host");
-  host.innerHTML = "";
-  const f = document.createElement("iframe");
-  f.src = "https://www.youtube.com/embed/" + MUSICA_HOJE.yt + "?rel=0&playsinline=1";
-  f.title = "Maroon 5 — " + MUSICA_HOJE.titulo;
-  f.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
-  f.setAttribute("allowfullscreen", "");
-  f.loading = "lazy";
-  host.appendChild(f);
-  host.classList.add("aberto");
-  // sem a API o botão grande só revela/destaca o player
-  const btn = $("np-play");
-  btn.disabled = false;
-  btn.textContent = "▶";
-  btn.onclick = function(){ host.scrollIntoView({behavior:"smooth", block:"center"}); };
-  $("np-toggle").hidden = true;
-}
-
-function ligarControles(){
-  $("np-play").addEventListener("click", function(){
-    if (!ytPronto || !ytPlayer) return;
-    if (tocando) {
-      ytPlayer.pauseVideo();
-    } else {
-      $("yt-host").classList.add("aberto");
-      $("np-toggle").textContent = "esconder player";
-      ytPlayer.playVideo();
-    }
-  });
-  $("np-toggle").addEventListener("click", function(){
-    const host = $("yt-host");
-    const aberto = host.classList.toggle("aberto");
-    $("np-toggle").textContent = aberto ? "esconder player" : "mostrar player";
-  });
-}
-
-function renderMusica(){
-  const prox = MUSICAS[diaN % MUSICAS.length];
-  $("titulo-musica").textContent = MUSICA_HOJE.titulo;
-  $("album-musica").textContent = MUSICA_HOJE.album;
-  $("dia-n").textContent = (diaN > totalDias) ? "Dia do show!" : ("Dia " + diaN + " de " + totalDias);
-  if (diaN > totalDias) {
-    $("amanha").innerHTML = "Hoje não tem \u201camanhã toca\u201d — hoje tem <b>show ao vivo</b>. 🎶";
-  } else {
-    $("amanha").innerHTML = "Amanhã toca: <b>" + prox.titulo + "</b> ✨";
-  }
-  ligarControles();
-  montarPlayerAPI();
-}
-
-/* ---------- textos, ingresso e playlist ---------- */
-function renderTextos(){
-  if (CONFIG.nomeDela) {
-    $("dedicatoria").textContent = "Para " + CONFIG.nomeDela + ", que vai cantar do começo ao fim";
-  }
-  const d = new Date(CONFIG.dataShow);
-  const meses = ["jan","fev","mar","abr","mai","jun","jul","ago","set","out","nov","dez"];
-  $("ingresso").textContent = "★ " + pad(d.getDate()) + " · " + meses[d.getMonth()] + " · " + d.getFullYear() + " — " + CONFIG.localShow + " ★";
-}
-
-function renderPlaylist(){
-  const ol = $("lista-playlist");
-  MUSICAS.forEach(function(m, i){
-    const li = document.createElement("li");
-    const n = document.createElement("span"); n.className = "n"; n.textContent = pad(i + 1);
-    const t = document.createElement("span"); t.className = "t"; t.textContent = m.titulo + " — " + m.album;
-    li.appendChild(n); li.appendChild(t);
-    ol.appendChild(li);
-  });
-}
-
-function renderProgresso(){
-  const pct = Math.min(100, Math.max(0, ((hoje0 - inicio0) / duracaoTotal) * 100));
-  $("pct").textContent = Math.round(pct) + "%";
-  setTimeout(function(){
-    $("preenchido").style.width = pct + "%";
-    $("coracaozinho").style.left = pct + "%";
-  }, 250);
-}
-
-/* ---------- fundo: suas fotos (se houver) ---------- */
+/* ──────────────────────────────────────────────
+   FUNDO
+   ────────────────────────────────────────────── */
 function usarFotos(){
   const lista = CONFIG.fotosFundo || [];
   if (!lista.length) return false;
@@ -628,213 +657,153 @@ function usarFotos(){
   const box = $("fotos-fundo");
   box.style.display = "block";
   const total = lista.length;
-  const passo = 100 / total;
-  lista.forEach(function(src, i){
+  lista.forEach((src, i) => {
     const div = document.createElement("div");
     div.className = "foto";
     div.style.backgroundImage = "url('" + src + "')";
     div.style.animationDuration = (total * 7) + "s";
-    div.style.animationDelay = (-(i) * (total * 7) / total) + "s";
+    div.style.animationDelay = (-i * (total * 7) / total) + "s";
     box.appendChild(div);
   });
   return true;
 }
 
-/* ---------- fundo: cena de show animada (canvas) ---------- */
 function fundoShow(){
   const cv = $("palco-fundo");
   const ctx = cv.getContext("2d");
-  let W = 0, H = 0, DPR = 1;
-  const A = CENA.a, B = CENA.b;
-  const rgba = function(c, al){ return "rgba(" + c[0] + "," + c[1] + "," + c[2] + "," + al + ")"; };
-
-  let feixes = [], poeira = [], plateia = [];
+  let W=0,H=0,DPR=1;
+  const A=CENA.a, B=CENA.b;
+  const rgba = (c,al) => "rgba("+c[0]+","+c[1]+","+c[2]+","+al+")";
+  let feixes=[],poeira=[],plateia=[];
 
   function dim(){
-    DPR = Math.min(2, window.devicePixelRatio || 1);
-    W = cv.clientWidth; H = cv.clientHeight;
-    cv.width = Math.floor(W * DPR); cv.height = Math.floor(H * DPR);
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+    DPR=Math.min(2,window.devicePixelRatio||1);
+    W=cv.clientWidth; H=cv.clientHeight;
+    cv.width=Math.floor(W*DPR); cv.height=Math.floor(H*DPR);
+    ctx.setTransform(DPR,0,0,DPR,0,0);
     construir();
   }
 
   function construir(){
-    // holofotes saindo do topo, abrindo em leque
-    feixes = [];
-    const n = W < 560 ? 4 : 6;
-    for (let i = 0; i < n; i++){
-      const ox = (W / (n - 1)) * i;
+    feixes=[];
+    const n=W<560?4:6;
+    for(let i=0;i<n;i++){
       feixes.push({
-        x: ox,
-        base: (i - (n - 1) / 2) * 0.16,   // ângulo base do leque
-        amp: 0.10 + Math.random() * 0.10, // amplitude da varredura
-        vel: 0.15 + Math.random() * 0.25,
-        fase: Math.random() * Math.PI * 2,
-        cor: i % 2 ? B : A
+        x:(W/(n-1))*i,
+        base:(i-(n-1)/2)*0.16,
+        amp:0.10+Math.random()*0.10,
+        vel:0.15+Math.random()*0.25,
+        fase:Math.random()*Math.PI*2,
+        cor:i%2?B:A
       });
     }
-    // poeira de luz subindo
-    poeira = [];
-    const np = Math.round((W * H) / 26000);
-    for (let i = 0; i < np; i++) poeira.push(novaPoeira(true));
-    // plateia: celulares acesos na base
-    plateia = [];
-    const nc = Math.round(W / 14);
-    for (let i = 0; i < nc; i++){
-      plateia.push({
-        x: Math.random() * W,
-        y: H - 4 - Math.random() * 46,
-        r: 1 + Math.random() * 1.6,
-        fase: Math.random() * Math.PI * 2,
-        vel: 0.6 + Math.random() * 1.2,
-        flash: 0
-      });
+    poeira=[];
+    const np=Math.round((W*H)/26000);
+    for(let i=0;i<np;i++) poeira.push(novaPoeira(true));
+    plateia=[];
+    const nc=Math.round(W/14);
+    for(let i=0;i<nc;i++){
+      plateia.push({x:Math.random()*W,y:H-4-Math.random()*46,r:1+Math.random()*1.6,fase:Math.random()*Math.PI*2,vel:0.6+Math.random()*1.2,flash:0});
     }
   }
 
-  function novaPoeira(espalhar){
-    return {
-      x: Math.random() * W,
-      y: espalhar ? Math.random() * H : H + 8,
-      r: 0.6 + Math.random() * 1.8,
-      vy: 0.25 + Math.random() * 0.7,
-      drift: (Math.random() - 0.5) * 0.3,
-      al: 0.15 + Math.random() * 0.45
-    };
-  }
+  function novaPoeira(e){ return {x:Math.random()*W,y:e?Math.random()*H:H+8,r:0.6+Math.random()*1.8,vy:0.25+Math.random()*0.7,drift:(Math.random()-.5)*0.3,al:0.15+Math.random()*0.45}; }
 
   function fundo(t){
-    // céu de palco
-    const g = ctx.createLinearGradient(0, 0, 0, H);
-    g.addColorStop(0, rgba(A, 0.16));
-    g.addColorStop(0.32, "rgba(20,4,11,0.55)");
-    g.addColorStop(1, "rgba(8,2,5,1)");
-    ctx.fillStyle = g;
-    ctx.fillRect(0, 0, W, H);
-    // brilho pulsante atrás do palco
-    const pulso = 0.5 + 0.5 * Math.sin(t * 0.0016);
-    const rg = ctx.createRadialGradient(W/2, H*0.16, 0, W/2, H*0.16, Math.max(W,H)*0.6);
-    rg.addColorStop(0, rgba(B, 0.10 + 0.06 * pulso));
-    rg.addColorStop(1, "rgba(0,0,0,0)");
-    ctx.fillStyle = rg;
-    ctx.fillRect(0, 0, W, H);
+    const g=ctx.createLinearGradient(0,0,0,H);
+    g.addColorStop(0,rgba(A,0.16)); g.addColorStop(0.32,"rgba(20,4,11,0.55)"); g.addColorStop(1,"rgba(8,2,5,1)");
+    ctx.fillStyle=g; ctx.fillRect(0,0,W,H);
+    const pulso=0.5+0.5*Math.sin(t*0.0016);
+    const rg=ctx.createRadialGradient(W/2,H*.16,0,W/2,H*.16,Math.max(W,H)*.6);
+    rg.addColorStop(0,rgba(B,.10+.06*pulso)); rg.addColorStop(1,"rgba(0,0,0,0)");
+    ctx.fillStyle=rg; ctx.fillRect(0,0,W,H);
   }
 
   function desenharFeixes(t){
-    ctx.globalCompositeOperation = "lighter";
-    const comp = Math.min(H * 1.15, 1100);
-    for (const f of feixes){
-      const ang = (Math.PI / 2) + f.base + Math.sin(t * 0.001 * f.vel + f.fase) * f.amp;
-      const half = 0.045; // abertura do feixe
-      const x1 = f.x + Math.cos(ang - half) * comp;
-      const y1 = Math.sin(ang - half) * comp;
-      const x2 = f.x + Math.cos(ang + half) * comp;
-      const y2 = Math.sin(ang + half) * comp;
-      const grad = ctx.createLinearGradient(f.x, 0, (x1 + x2) / 2, (y1 + y2) / 2);
-      grad.addColorStop(0, rgba(f.cor, 0.20));
-      grad.addColorStop(0.55, rgba(f.cor, 0.05));
-      grad.addColorStop(1, "rgba(0,0,0,0)");
-      ctx.fillStyle = grad;
-      ctx.beginPath();
-      ctx.moveTo(f.x, -6);
-      ctx.lineTo(x1, y1);
-      ctx.lineTo(x2, y2);
-      ctx.closePath();
-      ctx.fill();
-      // fonte de luz
-      ctx.fillStyle = rgba(f.cor, 0.5);
-      ctx.beginPath(); ctx.arc(f.x, 0, 3.2, 0, Math.PI * 2); ctx.fill();
+    ctx.globalCompositeOperation="lighter";
+    const comp=Math.min(H*1.15,1100);
+    for(const f of feixes){
+      const ang=(Math.PI/2)+f.base+Math.sin(t*.001*f.vel+f.fase)*f.amp;
+      const half=0.045;
+      const x1=f.x+Math.cos(ang-half)*comp, y1=Math.sin(ang-half)*comp;
+      const x2=f.x+Math.cos(ang+half)*comp, y2=Math.sin(ang+half)*comp;
+      const grad=ctx.createLinearGradient(f.x,0,(x1+x2)/2,(y1+y2)/2);
+      grad.addColorStop(0,rgba(f.cor,.20)); grad.addColorStop(.55,rgba(f.cor,.05)); grad.addColorStop(1,"rgba(0,0,0,0)");
+      ctx.fillStyle=grad; ctx.beginPath(); ctx.moveTo(f.x,-6); ctx.lineTo(x1,y1); ctx.lineTo(x2,y2); ctx.closePath(); ctx.fill();
+      ctx.fillStyle=rgba(f.cor,.5); ctx.beginPath(); ctx.arc(f.x,0,3.2,0,Math.PI*2); ctx.fill();
     }
-    ctx.globalCompositeOperation = "source-over";
+    ctx.globalCompositeOperation="source-over";
   }
 
   function desenharPoeira(){
-    ctx.globalCompositeOperation = "lighter";
-    for (const p of poeira){
-      p.y -= p.vy; p.x += p.drift;
-      if (p.y < -8){ Object.assign(p, novaPoeira(false)); }
-      ctx.fillStyle = rgba(B, p.al);
-      ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
+    ctx.globalCompositeOperation="lighter";
+    for(const p of poeira){
+      p.y-=p.vy; p.x+=p.drift;
+      if(p.y<-8) Object.assign(p,novaPoeira(false));
+      ctx.fillStyle=rgba(B,p.al); ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fill();
     }
-    ctx.globalCompositeOperation = "source-over";
+    ctx.globalCompositeOperation="source-over";
   }
 
   function desenharPlateia(t){
-    // massa escura da plateia
-    ctx.fillStyle = "rgba(4,1,3,0.92)";
-    ctx.beginPath();
-    ctx.moveTo(0, H);
-    ctx.lineTo(0, H - 34);
-    const passo = 26;
-    for (let x = 0; x <= W; x += passo){
-      const h = 20 + 14 * Math.sin(x * 0.05) + 8 * Math.sin(x * 0.13 + t * 0.001);
-      ctx.lineTo(x, H - h);
+    ctx.fillStyle="rgba(4,1,3,0.92)";
+    ctx.beginPath(); ctx.moveTo(0,H); ctx.lineTo(0,H-34);
+    for(let x=0;x<=W;x+=26){
+      const h=20+14*Math.sin(x*.05)+8*Math.sin(x*.13+t*.001);
+      ctx.lineTo(x,H-h);
     }
-    ctx.lineTo(W, H);
-    ctx.closePath();
-    ctx.fill();
-    // celulares acesos
-    ctx.globalCompositeOperation = "lighter";
-    for (const c of plateia){
-      const sway = Math.sin(t * 0.002 * c.vel + c.fase) * 5;
-      let al = 0.55 + 0.45 * Math.sin(t * 0.004 + c.fase);
-      if (Math.random() < 0.0016) c.flash = 1;        // flash de câmera ocasional
-      if (c.flash > 0){ al = 1; c.flash -= 0.06; }
-      const cor = c.flash > 0 ? [255,255,255] : B;
-      ctx.fillStyle = rgba(cor, Math.max(0, al));
-      ctx.beginPath(); ctx.arc(c.x + sway, c.y, c.r + (c.flash > 0 ? 1.5 : 0), 0, Math.PI * 2); ctx.fill();
+    ctx.lineTo(W,H); ctx.closePath(); ctx.fill();
+    ctx.globalCompositeOperation="lighter";
+    for(const c of plateia){
+      const sway=Math.sin(t*.002*c.vel+c.fase)*5;
+      let al=0.55+0.45*Math.sin(t*.004+c.fase);
+      if(Math.random()<.0016) c.flash=1;
+      if(c.flash>0){al=1;c.flash-=.06;}
+      const cor=c.flash>0?[255,255,255]:B;
+      ctx.fillStyle=rgba(cor,Math.max(0,al));
+      ctx.beginPath(); ctx.arc(c.x+sway,c.y,c.r+(c.flash>0?1.5:0),0,Math.PI*2); ctx.fill();
     }
-    ctx.globalCompositeOperation = "source-over";
+    ctx.globalCompositeOperation="source-over";
   }
 
-  function frame(t){
-    fundo(t);
-    desenharFeixes(t);
-    desenharPoeira();
-    desenharPlateia(t);
-    requestAnimationFrame(frame);
-  }
-
-  function estatico(){
-    fundo(1500);
-    desenharFeixes(1500);
-    desenharPlateia(1500);
-  }
+  function frame(t){ fundo(t); desenharFeixes(t); desenharPoeira(); desenharPlateia(t); requestAnimationFrame(frame); }
+  function estatico(){ fundo(1500); desenharFeixes(1500); desenharPlateia(1500); }
 
   window.addEventListener("resize", dim);
   dim();
-  if (REDUZIR) estatico(); else requestAnimationFrame(frame);
+  if(REDUZIR) estatico(); else requestAnimationFrame(frame);
 }
 
-/* ---------- atmosfera (dia do show) ---------- */
 function ligarChuva(){
-  if (chuvaLigada || REDUZIR) return;
-  chuvaLigada = true;
-  const simbolos = ["❤️","🎵","💘","🎶","✨"];
-  setInterval(function(){
-    for (let k = 0; k < 3; k++) {
-      const s = document.createElement("span");
-      s.className = "chuva-item";
-      s.textContent = simbolos[Math.floor(Math.random() * simbolos.length)];
-      s.style.left = (Math.random() * 100) + "vw";
-      s.style.fontSize = (14 + Math.random() * 18) + "px";
-      const dur = 5 + Math.random() * 5;
-      s.style.animationDuration = dur + "s";
+  if(chuvaLigada||REDUZIR) return;
+  chuvaLigada=true;
+  const simbolos=["❤️","🎵","💘","🎶","✨"];
+  setInterval(()=>{
+    for(let k=0;k<3;k++){
+      const s=document.createElement("span");
+      s.className="chuva-item";
+      s.textContent=simbolos[Math.floor(Math.random()*simbolos.length)];
+      s.style.left=(Math.random()*100)+"vw";
+      s.style.fontSize=(14+Math.random()*18)+"px";
+      const dur=5+Math.random()*5;
+      s.style.animationDuration=dur+"s";
       document.body.appendChild(s);
-      setTimeout(function(){ s.remove(); }, dur * 1000 + 500);
+      setTimeout(()=>s.remove(),dur*1000+500);
     }
-  }, 1300);
+  },1300);
 }
 
-/* ---------- início ---------- */
-if (!usarFotos()) fundoShow();
+/* ──────────────────────────────────────────────
+   INÍCIO
+   ────────────────────────────────────────────── */
+if(!usarFotos()) fundoShow();
 renderTextos();
 renderMusica();
-$("fato").textContent = FATOS[(diaN - 1) % FATOS.length];
 renderPlaylist();
+iniciarFatos();
 renderProgresso();
 atualizar();
-setInterval(atualizar, 1000);
+setInterval(atualizar,1000);
 </script>
 </body>
 </html>
